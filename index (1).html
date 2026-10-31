@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>شهر مدرسه‌ی ما</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#fff;--card:rgba(255,255,255,.14);--line:rgba(255,255,255,.28);--pink:#ff5d8f;--gold:#ffc83d;--violet:#8b5cf6;--mint:#06d6a0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;font-family:Vazirmatn,Tahoma,sans-serif;color:var(--ink);background:linear-gradient(160deg,#2b1055,#7597de 55%,#ff7eb3);background-color:#2b1055;background-attachment:fixed;overflow-x:hidden}
+.fl{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.fl span{position:absolute;bottom:-40px;font-size:26px;opacity:.5;animation:up 12s linear infinite}
+@keyframes up{to{transform:translateY(-115vh) rotate(40deg)}}
+main{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:18px 16px 90px}
+.screen{display:none;animation:in .5s}.screen.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px;backdrop-filter:blur(8px);margin-bottom:14px}
+h1{font-size:30px;margin:6px 0;font-weight:900;text-align:center;text-shadow:0 3px 12px rgba(0,0,0,.3)}
+h2{font-size:20px;margin:0 0 10px}
+p{line-height:2;margin:6px 0}
+.big{font-size:70px;text-align:center;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px) rotate(-4deg)}}
+.seen{display:flex;justify-content:center;gap:8px;align-items:center;background:linear-gradient(90deg,var(--gold),var(--pink));color:#2b1055;font-weight:900;border-radius:99px;padding:10px 18px;width:fit-content;margin:12px auto;animation:pulse 2s infinite}
+@keyframes pulse{50%{transform:scale(1.06)}}
+.gate{display:flex;justify-content:center;gap:0;margin:8px 0}
+.gate div{width:44px;height:84px;background:linear-gradient(#ffc83d,#ff5d8f);border-radius:10px 10px 0 0;transition:transform 1.4s}
+.gate.open .l{transform:translateX(70px) scaleX(.3)}.gate.open .r{transform:translateX(-70px) scaleX(.3)}
+button,.btn{font:inherit;font-weight:900;border:0;border-radius:16px;padding:14px 20px;color:#2b1055;background:linear-gradient(90deg,var(--gold),#ff9a5a);cursor:pointer;width:100%;font-size:17px;box-shadow:0 6px 0 rgba(0,0,0,.2)}
+button:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.2)}
+button.alt{background:var(--card);color:var(--ink);border:1px solid var(--line);box-shadow:none}
+button:disabled{opacity:.4}
+label{display:block;font-weight:700;margin:12px 0 6px}
+input,select{font:inherit;width:100%;padding:13px;border-radius:14px;border:2px solid transparent;background:#fff;color:#2b1055}
+input:focus,select:focus{outline:0;border-color:var(--gold)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:9px 13px;border-radius:99px;background:var(--card);border:2px solid var(--line);cursor:pointer;font-weight:700;user-select:none}
+.chip.on{background:var(--mint);color:#06332a;border-color:#fff}
+.bubble{background:#fff;color:#2b1055;border-radius:24px;padding:18px;min-height:180px;line-height:2.1;position:relative;font-weight:700}
+.bubble:after{content:"";position:absolute;top:-14px;right:50px;border:8px solid transparent;border-bottom:8px solid #fff;border-width:0 10px 14px}
+.bar{height:10px;background:var(--card);border-radius:9px;overflow:hidden;margin-bottom:14px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--mint),var(--gold));transition:width .4s}
+.opt{display:block;width:100%;text-align:right;margin:9px 0;padding:14px;border-radius:16px;background:var(--card);color:var(--ink);border:2px solid var(--line);box-shadow:none;font-size:16px}
+.opt:active{background:var(--gold);color:#2b1055}
+.result{text-align:center;border:3px solid var(--g,#fff)}
+.result .big{font-size:84px}
+.mission{display:flex;gap:12px;align-items:flex-start;border-right:6px solid var(--c)}
+.mission .e{font-size:38px}
+.mission b{font-size:17px}
+.mission q{display:block;margin-top:4px;line-height:2;quotes:none}
+.mapbtn{position:fixed;z-index:5;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));width:auto;padding:12px 16px;border-radius:99px;background:var(--pink);color:#fff;font-size:15px}
+.modal{display:none;position:fixed;inset:0;z-index:9;background:rgba(20,8,50,.8);padding:calc(18px + env(safe-area-inset-top,0px)) 16px;overflow:auto}
+.modal.on{display:block}
+.modal .in{max-width:520px;margin:0 auto}
+svg{width:100%;height:auto;background:#fff;border-radius:18px}
+.path{stroke-dasharray:10 8;animation:dash 1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-36}}
+ol{padding-right:22px;line-height:2.2}
+.hint{font-size:13px;opacity:.85}
+.idcard{border-radius:26px;padding:22px 18px;background:linear-gradient(135deg,var(--tc,#8b5cf6),#3a86ff);color:#fff;border:3px solid #fff;box-shadow:0 12px 30px rgba(0,0,0,.35);position:relative;overflow:hidden;text-align:center;animation:bob 4s ease-in-out infinite}
+.idcard:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 15%,rgba(255,255,255,.35),transparent 45%),repeating-linear-gradient(45deg,rgba(255,255,255,.07) 0 12px,transparent 12px 24px)}
+.idcard>*{position:relative}
+.idcard .av{font-size:60px;background:rgba(255,255,255,.25);width:96px;height:96px;border-radius:50%;display:grid;place-items:center;margin:0 auto 8px;border:3px solid #fff}
+.idcard .nm{font-size:26px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.idcard .tag{display:inline-block;background:#fff;color:#2b1055;border-radius:99px;padding:5px 14px;font-weight:900;margin:8px 4px 0}
+.idcard .stamp{position:absolute;top:14px;left:14px;transform:rotate(-14deg) scale(1.4);border:3px solid #fff;border-radius:10px;padding:2px 10px;font-weight:900;opacity:0;transition:.4s;background:rgba(6,214,160,.85)}
+.idcard.ok .stamp{opacity:1;transform:rotate(-14deg)}
+.mapcard{min-height:33vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border-radius:28px;border:3px solid #fff;background:linear-gradient(135deg,#06d6a0,#3a86ff 55%,#8b5cf6);box-shadow:0 10px 30px rgba(0,0,0,.35);cursor:pointer;padding:20px;position:relative;overflow:hidden;animation:pulse 2.4s infinite}
+.mapcard:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.35),transparent 40%),repeating-linear-gradient(45deg,rgba(255,255,255,.07) 0 12px,transparent 12px 24px)}
+.mapcard>*{position:relative}
+.mapcard .pin{font-size:64px;animation:bob 2.4s ease-in-out infinite}
+.mapcard h2{font-size:28px;margin:4px 0}
+.arow{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.conf{position:fixed;top:-30px;font-size:26px;z-index:20;animation:fall 2.6s linear forwards;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="fl" id="fl"></div>
+<main>
+
+<section class="screen on" id="s0">
+  <h1>🏫 شهر مدرسه‌ی ما</h1>
+  <div class="gate" id="gate"><div class="l"></div><div class="r"></div></div>
+  <div class="big">🦉</div>
+  <div class="card" style="text-align:center">
+    <h2>خوش اومدی!</h2>
+    <p>تو نفر <b id="nth" style="font-size:26px;color:var(--gold)">۱</b>ام هستی که وارد این دنیا شدی.</p>
+    <div class="seen">👀 <span id="seen">۱</span> نفر تا الان دیدنش</div>
+    <p class="hint">هر ۵۰ نفر که بیشتر بشیم، یه مرحله‌ی جدید باز می‌شه. به دوستات هم بگو!</p>
+  </div>
+  <button onclick='go(1)'>بزن بریم داخل 🚪</button>
+  <button class='alt' style='margin-top:14px;font-size:14px;padding:10px' onclick='go(10)'>🔑 من مسئولم</button>
+</section>
+
+<section class="screen" id="s1">
+  <h1>📝 خودت رو معرفی کن</h1>
+  <div class="card">
+    <label>نام</label><input id="fn" placeholder="مثلاً زهرا">
+    <label>نام خانوادگی</label><input id="ln" placeholder="مثلاً احمدی">
+    <div class="row">
+      <div><label>کلاس</label>
+        <select id="cl"><option value="">انتخاب کن</option><option>هفتم</option><option>هشتم</option><option>نهم</option><option>دهم</option><option>یازدهم</option><option>دوازدهم</option></select></div>
+      <div><label>رشته</label>
+        <select id="fd"><option value="">انتخاب کن</option><option>عمومی</option><option>ریاضی</option><option>تجربی</option><option>انسانی</option><option>هنر</option><option>فنی‌وحرفه‌ای</option></select></div>
+    </div>
+    <label>دوست دارم تو مدرسه... (چندتا انتخاب کن)</label>
+    <div class="chips" id="chips"></div>
+  </div>
+  <button id="b1" onclick="toOwl()">ادامه ✨</button>
+</section>
+
+<section class="screen" id="s2">
+  <div class="big">🦉</div>
+  <div class="bubble" id="owl"></div>
+  <button id="b2" style="margin-top:16px;display:none" onclick="startQuiz()">آماده‌م! 🌟</button>
+</section>
+
+<section class="screen" id="s3">
+  <div class="bar"><i id="bar"></i></div>
+  <div class="card"><h2 id="q"></h2><div id="opts"></div></div>
+</section>
+
+<section class="screen" id="s4">
+  <div class="card result" id="res"></div>
+  <button onclick="go(5)">ادامه 👉</button>
+</section>
+
+<section class="screen" id="s5">
+  <div class="big">🦉</div>
+  <div class="card" style="text-align:center">
+    <h2 id="dq"></h2>
+    <p>می‌خوای عضو این ماجرا بشی؟ تو مدرسه با گروهت فعالیت می‌کنی، امتیاز می‌گیری و دیده می‌شی.</p>
+    <p class="hint">این انتخاب کاملاً داوطلبانه‌ست و هر زمان که خواستی می‌تونی برگردی.</p>
+  </div>
+  <button onclick="decide(true)" style="margin-bottom:12px;background:linear-gradient(90deg,var(--mint),#9be15d)">✅ من هستم!</button>
+  <button class="alt" onclick="decide(false)">🤔 بعداً</button>
+</section>
+
+<section class="screen" id="s6">
+  <h1>🚀 ماموریت‌های تو</h1>
+  <div class="card"><p id="welc" style="text-align:center;margin:0"></p></div>
+  <div id='ms'></div>
+  <button onclick='openReg()'>📝 ثبت در مدرسه</button>
+</section>
+
+<section class="screen" id="s7">
+  <div class="big">🌙</div>
+  <div class="card" style="text-align:center"><h2>مشکلی نیست!</h2>
+  <p>در این ماجرا همیشه باز می‌مونه. هر وقت آماده بودی دوباره QR رو اسکن کن. 🦉</p></div>
+  <button class="alt" onclick="go(5)">نه، نظرم عوض شد!</button>
+</section>
+
+<section class='screen' id='s8'>
+  <h1>🦉 ماجرا تازه شروع شده!</h1>
+  <div class='card' style='text-align:center'><p>یه قدم آخر مونده: ببین منو کجا می‌تونی پیدا کنی!</p></div>
+  <div class='mapcard' onclick='map(1)'><div class='pin'>📍</div><h2>نقشه‌ی من</h2><p>بزن تا راه اتاقم رو ببینی</p></div>
+  <button style='margin-top:14px' onclick='toEnd()'>🎉 پایان ماجرا</button>
+  <button class='alt' style='margin-top:14px' onclick='go(6)'>برگشت به ماموریت‌ها</button>
+</section>
+
+<section class='screen' id='s9'>
+  <div id='md'></div>
+  <button onclick='go(6)'>برگشت به ماموریت‌ها 👈</button>
+</section>
+
+<section class='screen' id='s11'>
+  <h1>🏅 کارت عضویت مدرسه</h1>
+  <div class='idcard' id='idc'>
+    <div class='stamp'>ثبت شد ✅</div>
+    <div class='av' id='rav'>🦉</div>
+    <div class='nm' id='rn'></div>
+    <div><span class='tag' id='rc'></span><span class='tag' id='rt'></span></div>
+    <p class='hint' style='margin-top:12px'>عضو شهر مدرسه‌ی ما ✨</p>
+  </div>
+  <div class='card' id='regbox' style='margin-top:16px'>
+    <label style='display:flex;gap:10px;align-items:flex-start;font-weight:700'><input type='checkbox' id='okc' style='width:24px;height:24px;padding:0;flex:none'> اجازه می‌دم نام، پایه، رشته و تیمم به مسئول مدرسه داده بشه.</label>
+  </div>
+  <button id='regb' onclick='register()'>ثبت در مدرسه ✅</button>
+  <button class='alt' id='regback' style='margin-top:12px' onclick='go(6)'>برگشت</button>
+</section>
+
+<section class='screen' id='s12'>
+  <div class='big'>🦉</div>
+  <h1>ممنون از همراهیت! 🎉</h1>
+  <div class='card' style='text-align:center'>
+    <h2 id='endn'></h2>
+    <p style='font-size:18px;font-weight:700'>نماینده‌ی ما به‌زودی میاد بهت سر می‌زنه. 🌟</p>
+    <p class='hint'>تا اون موقع، با گروهت آماده‌ی ماموریت‌ها باش!</p>
+  </div>
+  
+</section>
+
+<section class='screen' id='s10'>
+  <h1>🔑 بخش مسئول</h1>
+  <div class='card' style='text-align:center'><p><b>این بخش برای سازنده‌ی سایت است.</b></p>
+    <input id='code' type='password' inputmode='numeric' placeholder='رمز رو بنویس' style='text-align:center;margin:8px 0 12px'>
+    <button onclick='adminOpen()'>ورود</button></div>
+  <div id='adm'></div>
+  <button class='alt' style='margin-top:10px' onclick='go(0)'>برگشت</button>
+</section>
+</main>
+<button class='mapbtn' onclick='map(1)'>🗺️ اتاق من</button>
+<div class="modal" id="map"><div class="in">
+  <h2>🗺️ راه رسیدن به اتاق من</h2>
+  <svg viewBox='0 0 400 250' font-family='Vazirmatn,Tahoma,sans-serif'>
+    <defs><linearGradient id='fg' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#fff6e5'/><stop offset='1' stop-color='#ffe0f0'/></linearGradient></defs>
+    <rect x='4' y='4' width='392' height='242' rx='18' fill='url(#fg)' stroke='#2b1055' stroke-width='3'/>
+    <rect x='8' y='8' width='384' height='50' rx='12' fill='#e0d4ff' opacity='.7'/><text x='16' y='24' font-size='10' fill='#6a3fd0'>طبقه‌ی دوم</text>
+    <rect x='165' y='14' width='105' height='38' rx='8' fill='#c9b8ff'/><text x='217' y='37' text-anchor='middle' font-size='12' fill='#2b1055'>سالن اجتماعات</text>
+    <rect x='290' y='14' width='96' height='38' rx='8' fill='#ffe9a8' stroke='#ff5d8f' stroke-width='3'/><text x='338' y='37' text-anchor='middle' font-size='12' fill='#2b1055'>اتاق انجمن</text>
+    <circle cx='338' cy='33' r='24' fill='none' stroke='#ff5d8f' stroke-width='3'><animate attributeName='r' values='24;36;24' dur='1.6s' repeatCount='indefinite'/><animate attributeName='opacity' values='1;0;1' dur='1.6s' repeatCount='indefinite'/></circle>
+    <rect x='300' y='70' width='88' height='100' rx='10' fill='#c9f2e3'/><text x='344' y='116' text-anchor='middle' font-size='11' fill='#2b1055'>کلاس‌های</text><text x='344' y='132' text-anchor='middle' font-size='11' fill='#2b1055'>یازدهم و دوازدهم</text>
+    <rect x='12' y='70' width='100' height='110' rx='10' fill='#ffd1dc'/><text x='62' y='128' text-anchor='middle' font-size='12' fill='#2b1055'>کلاس‌های دهم</text>
+    <rect x='150' y='78' width='80' height='30' rx='6' fill='#ffc83d'/><text x='190' y='97' text-anchor='middle' font-size='10' fill='#2b1055'>پله‌ها ⬆ طبقه‌ی دوم</text>
+    <rect x='40' y='200' width='110' height='40' rx='10' fill='#ffd9a8'/><text x='95' y='224' text-anchor='middle' font-size='12' fill='#2b1055'>دفتر مدیر</text>
+    <rect x='180' y='206' width='80' height='34' rx='10' fill='#2b1055'/><text x='220' y='227' text-anchor='middle' font-size='12' fill='#fff'>ورودی مدرسه</text>
+    <path class='path' d='M220 204 V62 H338 V54' fill='none' stroke='#ff5d8f' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/>
+    <circle cx='220' cy='204' r='6' fill='#06d6a0'/>
+    <text font-size='22' text-anchor='middle'><animateMotion dur='5s' repeatCount='indefinite' path='M220 204 V62 H338 V54'/>🦉</text>
+  </svg>
+  <div class="card" style="margin-top:12px">
+    <ol>
+      <li>از ورودی مدرسه وارد شو (دفتر مدیر سمت چپته).</li>
+      <li>صاف برو تا پله‌های طبقه‌ی دوم.</li>
+      <li>از پله‌ها برو بالا.</li>
+      <li>تو راهروی طبقه‌ی دوم به سمت راست برو و از کنار سالن اجتماعات رد شو.</li>
+      <li>اتاق انجمن آخر راهرو، سمت راسته. 🦉</li>
+    </ol>
+    <p class="hint">نقشه از روی کروکی کلاس ساخته شده و ساده‌شده‌ست.</p>
+  </div>
+  <button onclick="map(0)">بستن</button>
+</div></div>
+
+<script>
+var SB_URL='https://nmwtwyzsbirjwaohjumm.supabase.co';
+var SB_KEY='sb_publishable_cmyPosygD6VR4X5IwtYikw_wodVJZq3';
+var $=function(i){return document.getElementById(i)};
+var fa=function(n){return Number(n).toLocaleString('fa-IR')};
+var S={name:'',score:{a:0,b:0,c:0,d:0}};
+var G={
+ a:{e:'🎨',n:'نقاش‌ها',c:'#ff5d8f',t:'رنگ، ایده و خیال دارید. شما دنیای مدرسه رو قشنگ‌تر می‌کنید.'},
+ b:{e:'🤝',n:'پل‌ساز‌ها',c:'#ffc83d',t:'دل‌ها رو به هم وصل می‌کنید و تیم رو با هم جلو می‌برید.'},
+ c:{e:'🎭',n:'قصه‌گوها',c:'#8b5cf6',t:'صدا و کلمه دارید. حرف‌ها رو شنیدنی می‌کنید.'},
+ d:{e:'🔧',n:'سازنده‌ها',c:'#06d6a0',t:'ایده رو به واقعیت تبدیل می‌کنید. اهل عمل هستید.'}
+};
+var Q=[
+ ['یه پروژه‌ی گروهی بهت دادن. اول چیکار می‌کنی؟',['🎨 ایده‌های عجیب می‌دم','a'],['🤝 کارها رو بین همه تقسیم می‌کنم','b'],['🎭 داستان پروژه رو تعریف می‌کنم','c'],['🔧 دست به کار می‌شم','d']],
+ ['یه دیوار خالی تو مدرسه هست. چی می‌خوای روش؟',['🎨 یه نقاشی بزرگ','a'],['🤝 تابلوی گروهی که همه سهم دارن','b'],['🎭 یه جمله‌ی الهام‌بخش','c'],['🔧 یه ساختار سه‌بعدی','d']],
+ ['وقتی گروهت با هم اختلاف پیدا می‌کنه…',['🎨 راه تازه‌ای پیشنهاد می‌دم','a'],['🤝 میانجی می‌شم','b'],['🎭 با شوخی جو رو عوض می‌کنم','c'],['🔧 می‌گم عملی امتحانش کنیم','d']],
+ ['جشن مدرسه رو داری برنامه‌ریزی می‌کنی. نقشت چیه؟',['🎨 طراحی دکور','a'],['🤝 مدیریت برنامه','b'],['🎭 مجری','c'],['🔧 چیدن و ساختن صحنه','d']],
+ ['چی بیشتر باعث افتخارته؟',['🎨 کار خلاقی که ساختم','a'],['🤝 تیمی که رهبریش کردم','b'],['🎭 حرفی که روی بقیه اثر گذاشت','c'],['🔧 چیزی که با دست خودم درست شد','d']],
+ ['یه فرصت آزاد داری. چیکار می‌کنی؟',['🎨 نقاشی یا طراحی','a'],['🤝 رفتن پیش دوستا','b'],['🎭 خوندن یا نوشتن قصه','c'],['🔧 درست کردن یه وسیله','d']],
+ ['یه مسابقه‌ی گروهی برگزار می‌شه. نقشت؟',['🎨 پوستر و لوگوی تیم','a'],['🤝 کاپیتان می‌شم','b'],['🎭 شعار تیم رو می‌نویسم','c'],['🔧 وسایل و استراتژی','d']],
+ ['شعار زندگیت کدومه؟',['🎨 «متفاوت باش»','a'],['🤝 «با هم قوی‌تریم»','b'],['🎭 «حرفت رو بزن»','c'],['🔧 «بساز، نگو»','d']]
+];
+var INTERESTS=['🎨 هنر و نقاشی','🎭 نمایش و سخنرانی','📸 رسانه و عکاسی','📚 کتاب و کتابخونه','⚽ ورزش','🤝 کمک به همکلاسی‌ها','🗓️ برنامه‌ریزی و هماهنگی'];
+var MS=[
+ ['🎮','بازی و خلاقیت','بازی فقط سرگرمی نیست؛ اولین کارگاه ساختنِ دنیاهایی‌ه که هنوز وجود ندارن.','#ff5d8f'],
+ ['🏫','مدرسه‌ی انقلاب','بفهم کشورت چطور ساخته شد، تا بدونی فردا قراره تو چی بسازی.','#ffc83d'],
+ ['🌷','دیدار با مادر شهید','بعضی قصه‌ها تو کتاب نیستن؛ تو دل مادرانی هستن که تو باید بشنوی و زنده نگهشون داری.','#8b5cf6'],
+ ['🎓','روز دانش‌آموز','این روز مال توئه؛ جشنش رو با ایده‌های خودت بساز.','#06d6a0']
+];
+
+var MD=[
+ ['🎮','کارگاه دنیاسازها','بازی و خلاقیت','بازی فقط سرگرمی نیست؛ اولین کارگاه ساختنِ دنیاهایی‌ه که هنوز وجود ندارن.','#ff5d8f','تو و گروهت یاد می‌گیرید با بازی فکر کنید، خلاق باشید و چیزی بسازید که بقیه از بازی کردنش لذت ببرن.',['طراحی یه بازی فکری یا تخته‌ای با قوانین خودتون','ساختن یه بازی ساده‌ی کامپیوتری یا گوشی (مثلاً با اسکرچ)','برگزاری مسابقه‌ی معما و «فرار از مدرسه»','ابداع یه بازی گروهی جدید برای حیاط']],
+ ['🏫','سفر به ریشه‌ها','مدرسه‌ی انقلاب','بفهم کشورت چطور ساخته شد، تا بدونی فردا قراره تو چی بسازی.','#ffc83d','با شناخت فعالیت‌ها و مسیر کشورمون، می‌فهمیم چی به ما رسیده و چطور می‌تونیم ادامه‌دهنده‌ی راه باشیم.',['مصاحبه با معلم‌ها یا بزرگ‌ترها درباره‌ی گذشته‌ی مدرسه و شهر','ساخت یه خط زمانی تصویری روی دیوار مدرسه','مسابقه‌ی اطلاعات عمومی درباره‌ی کشور','اجرای یه نمایش کوتاه از یه رویداد تاریخی']],
+ ['🌷','قصه‌هایی که زنده می‌مونن','دیدار با مادر شهید','بعضی قصه‌ها تو کتاب نیستن؛ تو دل مادرانی هستن که تو باید بشنوی و زنده نگهشون داری.','#8b5cf6','یه دیدار محترمانه و صمیمی برای شنیدن خاطره‌ها و تشکر از کسایی که برای ما از خودشون گذشتن. (با هماهنگی مسئول و با احترام کامل انجام می‌شه.)',['آماده کردن چندتا سؤال محترمانه و فقط گوش دادن','نوشتن یه کارت یا نامه‌ی تشکر دسته‌جمعی','بردن یه شاخه گل یا هدیه‌ی ساده','نوشتن خاطره‌های شنیده‌شده (با اجازه) برای تابلوی مدرسه']],
+ ['🎓','جشنِ ساخته‌ی ما','روز دانش‌آموز','این روز مال توئه؛ جشنش رو با ایده‌های خودت بساز.','#06d6a0','روز دانش‌آموز فرصتیه که خودتون برنامه‌ریزی کنید، اجرا کنید و حس کنید مدرسه مال شماست.',['اجرای نمایش، موسیقی یا استندآپ کوتاه','طراحی پوستر و تزئین مدرسه','برنامه‌ی تقدیر از معلم‌ها و کادر مدرسه','مسابقه‌ی تیمی بین گروه‌ها']]
+];
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+// floating emojis
+(function(){var f=$('fl'),a=['⭐','🎨','📚','✨','🎈','🦉','🌈'];for(var i=0;i<14;i++){var s=document.createElement('span');s.textContent=a[i%a.length];s.style.left=(i*7.3)%100+'%';s.style.animationDelay=(-i*1.7)+'s';s.style.animationDuration=(9+i%5*2)+'s';f.appendChild(s)}})();
+
+// counter (stored only on this device)
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+function sb(path,body,extra){
+  var hd={'apikey':SB_KEY,'Content-Type':'application/json'};
+  if(SB_KEY.indexOf('eyJ')===0)hd['Authorization']='Bearer '+SB_KEY;
+  if(extra)for(var k in extra)hd[k]=extra[k];
+  return fetch(SB_URL+'/rest/v1/'+path,{method:'POST',headers:hd,body:JSON.stringify(body||{})});
+}
+function api(a,d){
+  d=d||{};
+  if(a==='hit'||a==='count')return sb('rpc/'+(a==='hit'?'hit':'get_count')).then(function(r){return r.json()}).then(function(n){if(typeof n!=='number')throw 0;return {ok:true,n:n}});
+  if(a==='register')return sb('regs',{name:d.name,cls:d.cls,field:d.field,team:d.group},{'Prefer':'return=minimal'}).then(function(r){return {ok:r.ok}});
+  if(a==='list')return sb('rpc/admin_list',{code:d.code}).then(function(r){return r.json()}).then(function(x){if(!x||!x.rows)return {ok:false};return {ok:true,rows:x.rows,seen:x.seen}});
+  return Promise.reject();
+}
+(function(){
+  var my=store('myn');
+  function fail(){$('nth').textContent='؟';$('seen').textContent='؟'}
+  if(my){api('count').then(function(d){$('nth').textContent=fa(my);$('seen').textContent=fa(d.n)}).catch(fail)}
+  else{api('hit').then(function(d){store('myn',String(d.n));$('nth').textContent=fa(d.n);$('seen').textContent=fa(d.n)}).catch(fail)}
+})();
+setTimeout(function(){$('gate').classList.add('open')},400);
+
+// chips
+INTERESTS.forEach(function(t){var c=document.createElement('div');c.className='chip';c.textContent=t;c.onclick=function(){c.classList.toggle('on')};$('chips').appendChild(c)});
+
+function go(i){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on')});$('s'+i).classList.add('on');window.scrollTo(0,0)}
+function map(o){$('map').classList.toggle('on',!!o)}
+function confetti(){var a=['🎉','⭐','✨','🎊','💛'];for(var i=0;i<22;i++){(function(i){setTimeout(function(){var c=document.createElement('div');c.className='conf';c.textContent=a[i%5];c.style.left=Math.random()*95+'%';document.body.appendChild(c);setTimeout(function(){c.remove()},2800)},i*80)})(i)}}
+
+function toOwl(){
+  var f=$('fn').value.trim(),l=$('ln').value.trim();
+  if(!f||!l||!$('cl').value||!$('fd').value){alert('لطفاً نام، نام خانوادگی، کلاس و رشته رو کامل کن 🙂');return}
+  S.name=f;S.full=f+' '+l;S.cls=$('cl').value;S.field=$('fd').value;
+  S.int=[].slice.call(document.querySelectorAll('.chip.on')).map(function(c){return c.textContent});
+  go(2);
+  var txt='سلام '+f+'! 🦉\nخوش اومدی. من «جغد دانا»م، نگهبان این مدرسه‌ی قشنگ.\nدیدم اومدی و اسمت رو نوشتی، پس بذار یه راز بهت بگم: مدرسه فقط درس و زنگ تفریح نیست. یه ماجرای بزرگ‌تر هم داره، و تو می‌تونی جزوش باشی.\nاینجا کسایی که فعال باشن دیده می‌شن. هر کاری که برای مدرسه بکنی، از کمک به کادر مدرسه تا ساختن فضایی قشنگ‌تر و جذاب‌تر، برات امتیاز می‌شه. امتیازها جمع می‌شن و گروهت رو بالاتر می‌برن.\nولی یه شرط داره: این ماجرا فقط با همکاری و خلاقیت پیش می‌ره. پس الان چندتا سؤال کوچیک ازت می‌پرسم تا بفهمم به کدوم گروه می‌خوری. آماده‌ای؟ 🌟';
+  var el=$('owl'),i=0;el.textContent='';$('b2').style.display='none';
+  clearInterval(window.tt);
+  window.tt=setInterval(function(){el.textContent=txt.slice(0,++i);if(i>=txt.length){clearInterval(window.tt);$('b2').style.display='block'}},38);
+}
+
+var qi=0;
+function startQuiz(){clearInterval(window.tt);qi=0;S.score={a:0,b:0,c:0,d:0};go(3);showQ()}
+function showQ(){
+  var q=Q[qi];$('q').textContent=q[0];$('bar').style.width=(qi/Q.length*100)+'%';
+  var o=$('opts');o.innerHTML='';
+  q.slice(1).forEach(function(x){var b=document.createElement('button');b.className='opt';b.textContent=x[0];b.onclick=function(){S.score[x[1]]++;qi++;if(qi<Q.length)showQ();else finish()};o.appendChild(b)});
+}
+function finish(){
+  var k=Object.keys(S.score).sort(function(x,y){return S.score[y]-S.score[x]});
+  var g=G[k[0]],g2=G[k[1]],mix=S.score[k[0]]-S.score[k[1]]<=1;
+  S.group=g.n+(mix?' + '+g2.n:'');S.gc=g.c;S.ge=g.e;
+  $('res').style.setProperty('--g',g.c);
+  $('res').innerHTML='<div class="big">'+g.e+'</div><p>'+S.name+'، تو شبیه</p><h1 style="color:'+g.c+'">'+g.n+'</h1><p>'+g.t+'</p>'+
+    (mix?'<p style="background:var(--card);border-radius:14px;padding:8px">✨ تو یه شخصیت ترکیبی هستی! گروه دومت: '+g2.e+' '+g2.n+'</p>':'')+
+    '<p class="hint">امتیازها: 🎨 '+fa(S.score.a)+' | 🤝 '+fa(S.score.b)+' | 🎭 '+fa(S.score.c)+' | 🔧 '+fa(S.score.d)+'</p>';
+  $('dq').textContent=S.name+'، گروه '+g.n+' منتظر توئه!';
+  go(4);confetti();
+}
+function showM(i){
+  var x=MD[i];
+  $('md').innerHTML='<div class="big">'+x[0]+'</div><h1>'+x[1]+'</h1><p class="hint" style="text-align:center">ماموریت '+fa(i+1)+': '+x[2]+'</p>'+
+   '<div class="card" style="border:3px solid '+x[4]+'"><h2>🎯 هدف</h2><p style="font-weight:900;font-size:18px">«'+x[3]+'»</p><p>'+x[5]+'</p></div>'+
+   '<div class="card"><h2>💡 ایده‌هایی برای انجامش</h2><ol>'+x[6].map(function(t){return '<li>'+t+'</li>'}).join('')+'</ol></div>';
+  go(9);
+}
+function adminOpen(){
+  var code=$('code').value.trim();
+  if(!code){alert('رمز رو بنویس');return}
+  $('adm').innerHTML='<div class="card"><p>در حال بارگذاری...</p></div>';
+  api('list',{code:code}).then(function(d){
+    if(!d.ok){$('adm').innerHTML='';alert('رمز درست نیست');return}
+    var rows=d.rows||[],gc={};
+    rows.forEach(function(r){gc[r.group]=(gc[r.group]||0)+1});
+    window.LISTTXT=rows.map(function(r,i){return (i+1)+'. '+r.name+' | '+r.cls+' | '+r.field+' | '+r.group}).join('\n');
+    var h='<div class="card"><h2>📊 خلاصه</h2><p>تعداد سین (دستگاه‌ها): <b>'+fa(d.seen)+'</b></p><p>تعداد ثبت‌نام: <b>'+fa(rows.length)+'</b></p>'+Object.keys(gc).map(function(g){return '<div class="arow"><span>'+esc(g)+'</span><b>'+fa(gc[g])+' نفر</b></div>'}).join('')+'</div>';
+    h+='<div class="card"><h2>👩‍🎓 اسم بچه‌ها</h2>'+(rows.length?rows.map(function(r){return '<div class="arow"><span><b>'+esc(r.name)+'</b><br>'+esc(r.cls)+' - '+esc(r.field)+'</span><span>'+esc(r.group)+'</span></div>'}).join(''):'<p>هنوز کسی ثبت‌نام نکرده.</p>')+'</div>';
+    if(rows.length)h+='<button class="alt" style="margin-bottom:10px" onclick="navigator.clipboard&&navigator.clipboard.writeText(window.LISTTXT).then(function(){alert(\'لیست کپی شد\')})">📋 کپی لیست</button>';
+    $('adm').innerHTML=h;
+  }).catch(function(){$('adm').innerHTML='';alert('اتصال به سرور برقرار نشد')});
+}
+function toEnd(){$('endn').textContent=(S.name||'دوست من')+'، خیلی خوشحالیم که اومدی!';go(12);confetti()}
+function openReg(){
+  if(!S.done){$('rn').textContent=S.full;$('rc').textContent=S.cls+' - '+S.field;$('rt').textContent=(S.ge||'')+' '+S.group;$('rav').textContent=S.ge||'🦉';$('idc').style.setProperty('--tc',S.gc||'#8b5cf6');$('okc').checked=false}
+  go(11);
+}
+function register(){
+  if(S.done||S.busy)return;
+  if(!$('okc').checked){alert('برای ثبت، اول اجازه رو تیک بزن 🙂');return}
+  S.busy=true;$('regb').disabled=true;
+  api('register',{name:S.full,cls:S.cls,field:S.field,group:S.group}).then(function(d){
+    S.busy=false;
+    if(!d.ok)throw 0;
+    S.done=true;$('regb').style.display='none';$('regback').style.display='none';$('idc').classList.add('ok');confetti();
+    $('regbox').innerHTML='<h2>🎉 ثبت شد!</h2><p>'+esc(S.name)+'، اسمت توی لیست مدرسه نوشته شد. خوش اومدی!</p><button class="alt" style="margin-top:12px" onclick="go(8)">آخرین قدم: نقشه 🗺️</button>';
+  }).catch(function(){S.busy=false;$('regb').disabled=false;alert('ثبت نشد. اینترنت رو چک کن و دوباره امتحان کن.')});
+}
+function decide(y){
+  
+  if(!y){go(7);return}
+  $('welc').textContent='خوش اومدی به گروه '+S.group+'، '+S.name+'! 🎉 این ماموریت‌ها منتظر تو و گروهتن:';
+  var m=$('ms');m.innerHTML='';
+  MD.forEach(function(x,i){var d=document.createElement('div');d.className='card mission';d.style.setProperty('--c',x[4]);d.style.cursor='pointer';d.onclick=function(){showM(i)};d.innerHTML='<div class="e">'+x[0]+'</div><div><b>ماموریت '+fa(i+1)+': '+x[1]+'</b><div class="hint">'+x[2]+'</div><div style="margin-top:6px;font-weight:900;color:var(--gold)">ببین چی منتظرته ←</div></div>';m.appendChild(d)});
+  go(6);confetti();
+}
+</script>
+</body>
+</html>
